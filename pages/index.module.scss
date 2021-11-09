@@ -1,0 +1,10 @@
+.gifs {
+  display: flex;
+  flex-wrap: wrap;
+  margin: -30rem;
+}
+
+.gif {
+  width: calc(100% / 3);
+  padding: 30rem;
+}

@@ -1,9 +1,20 @@
+html {
+  font-size: 1px;
+}
+
 html,
 body {
+  min-height: 100vh;
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: 'Roboto', -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+  Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+body {
+  background-color: #090A0F;
+  background-image: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
+  background-repeat: no-repeat;
 }
 
 a {
@@ -13,4 +24,19 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+input,
+button {
+  font-family: 'Roboto', sans-serif;
+}
+
+#__next {
+  min-height: 100vh;
+}
+
+.width-container {
+  width: 100%;
+  max-width: 1220rem;
+  margin: 0 auto;
 }

@@ -1,0 +1,62 @@
+.form {
+  position: relative;
+  max-width: 640rem;
+  margin: 0 auto 80rem;
+}
+
+.button {
+  position: absolute;
+  top: 6rem;
+  right: 0;
+  width: 44rem;
+  height: 44rem;
+  background: none;
+  border: 0;
+  padding: 0;
+}
+
+.arrow {
+  color: #fff;
+}
+
+.input {
+  width: 100%;
+  height: 56rem;
+  padding-right: 56rem;
+  color: #fff;
+  font-weight: 300;
+  font-size: 24rem;
+  background: none;
+  border: 0;
+
+  &:focus {
+    outline: none;
+
+    & + .line {
+      height: 2px;
+      opacity: 1;
+    }
+  }
+}
+
+.line {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  opacity: 0.8;
+  background-color: #fff;
+  pointer-events: none;
+}
+
+.gifs {
+  display: flex;
+  flex-wrap: wrap;
+  margin: -30rem;
+}
+
+.gif {
+  width: calc(100% / 3);
+  padding: 30rem;
+}
