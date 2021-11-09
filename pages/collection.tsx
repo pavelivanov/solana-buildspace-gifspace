@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import type { NextPage } from 'next'
 import { web3 } from '@project-serum/anchor'
 import { useConnect } from 'wallet'
-import { PREVIEW_GIFS, baseAccount, getProvider, getProgram } from 'helpers'
+import { PREVIEW_GIFS, getGifAccount, getProvider, getProgram } from 'helpers'
 import cx from 'classnames'
 
 import { Gallery } from 'components'
@@ -64,6 +64,8 @@ type InitializeProgramProps = {
 }
 
 const InitializeProgram: React.FunctionComponent<InitializeProgramProps> = ({ onSuccess }) => {
+  const { account } = useConnect()
+
   const [ isSubmitting, setSubmitting ] = useState(false)
 
   const handleClick = async () => {
@@ -77,23 +79,22 @@ const InitializeProgram: React.FunctionComponent<InitializeProgramProps> = ({ on
 
       const provider = getProvider()
       const program = getProgram()
+      const giftAccount = getGifAccount(account)
 
       await program.rpc.startStuffOff({
         accounts: {
           systemProgram: web3.SystemProgram.programId,
-          baseAccount: baseAccount.publicKey,
+          baseAccount: giftAccount.publicKey,
           user: provider.wallet.publicKey,
         },
-        signers: [ baseAccount ],
+        signers: [ giftAccount ],
       })
 
-      const account = baseAccount.publicKey.toString()
-
-      console.log('Created a new BaseAccount w/ address:', account)
+      console.log('Created a new BaseAccount w/ address:', giftAccount.publicKey.toString())
       onSuccess()
     }
     catch (err) {
-      console.log('Error creating BaseAccount account:', err)
+      console.error('Error creating BaseAccount account:', err)
     }
     finally {
       setSubmitting(false)

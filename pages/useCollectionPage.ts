@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useConnect } from 'wallet'
 import { useReducerState } from 'hooks'
-import { baseAccount, getProgram } from 'helpers'
+import { getProgram, getGifAccount } from 'helpers'
 
 
 type State = {
@@ -26,19 +26,21 @@ const useCollectionPage = () => {
       setState({ isFetching: true })
 
       const program = getProgram()
-      const account = await program.account.baseAccount.fetch(baseAccount.publicKey) as {
+      const gifAccount = getGifAccount(account)
+
+      const data = await program.account.baseAccount.fetch(gifAccount.publicKey) as {
         gifList: Array<{ gifLink: string }>
       }
 
-      console.log('Got the account:', account)
+      console.log('Got the data:', data)
 
       setState({
         isFetching: false,
-        gifs: account.gifList.map(({ gifLink }) => gifLink),
+        gifs: data.gifList.map(({ gifLink }) => gifLink),
       })
     }
     catch (err) {
-      console.log(err)
+      console.error(err)
       setState({ isFetching: false })
     }
   }
@@ -67,10 +69,11 @@ const useCollectionPage = () => {
       console.log('Gif link:', inputValue)
 
       const program = getProgram()
+      const gifAccount = getGifAccount(account)
 
       await program.rpc.addGif(inputValue, {
         accounts: {
-          baseAccount: baseAccount.publicKey,
+          baseAccount: gifAccount.publicKey,
         },
       })
 

@@ -101,6 +101,6 @@ export const WalletProvider: React.FunctionComponent = ({ children }) => {
   return (
     <Context.Provider value={context}>
       {children}
-      </Context.Provider>
+    </Context.Provider>
   )
 }

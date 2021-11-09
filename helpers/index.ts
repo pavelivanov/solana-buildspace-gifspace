@@ -5,7 +5,6 @@ import { Provider, Program, web3 } from '@project-serum/anchor'
 import type { Idl } from '@project-serum/anchor'
 
 import idl from './idl.json'
-import kp from './keypair.json'
 
 
 export const PREVIEW_GIFS = [
@@ -13,11 +12,6 @@ export const PREVIEW_GIFS = [
   'https://media.giphy.com/media/J3GvwYLogUVgY/giphy.gif',
   'https://media.giphy.com/media/PkKzNQjwPy7GvxZbfe/giphy.gif',
 ]
-
-// Create a keypair for the account that will hold the GIF data
-const arr = Object.values(kp._keypair.secretKey)
-const secret = new Uint8Array(arr)
-export const baseAccount = web3.Keypair.fromSecretKey(secret)
 
 const network = clusterApiUrl('devnet')
 const programId = new PublicKey(idl.metadata.address)
@@ -33,4 +27,23 @@ export const getProvider = () => {
 export const getProgram = () => {
   const provider = getProvider()
   return new Program(idl as Idl, programId, provider)
+}
+
+export const getGifAccount = (account: string | null) => {
+  let keypair = localStorage.getItem(`gifverse-gif-keypair-for-${account}`)
+
+  if (!keypair) {
+    keypair = JSON.stringify(web3.Keypair.generate())
+
+    localStorage.setItem(`gifverse-gif-keypair-for-${account}`, keypair)
+  }
+
+  keypair = JSON.parse(keypair)
+
+  // @ts-ignore
+  const arr = Object.values(keypair._keypair.secretKey)
+  // @ts-ignore
+  const secret = new Uint8Array(arr)
+
+  return web3.Keypair.fromSecretKey(secret)
 }
