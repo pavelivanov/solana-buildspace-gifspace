@@ -1,3 +1,6 @@
+@import "styles/shared";
+
+
 .root {
   display: flex;
   flex-direction: column;
@@ -8,29 +11,52 @@
   position: relative;
   z-index: 2;
   margin-bottom: auto;
-  padding: 40rem;
   text-align: center;
+
+  @include mobile {
+    padding: 20rem 0;
+  }
+
+  @include except-mobile {
+    padding: 40rem;
+  }
 }
 
 .title {
   font-family: 'Righteous', cursive;
   color: #fafafc;
-  font-size: 94rem;
-  line-height: 100rem;
   text-transform: uppercase;
   letter-spacing: 4rem;
+
+  @include mobile {
+    font-size: 64rem;
+    line-height: 80rem;
+  }
+
+  @include except-mobile {
+    font-size: 94rem;
+    line-height: 100rem;
+  }
 }
 
 .text {
   padding-left: 2px;
-  color: #aaa;
-  font-weight: 100;
-  font-size: 26rem;
+  color: #627e9f;
+  font-weight: 300;
+  font-size: 18rem;
   text-transform: uppercase;
+  letter-spacing: 0.04em;
 }
 
 .content {
-  margin-top: -90rem;
+
+  @include mobile {
+    padding: 32rem 20rem 40rem;
+  }
+
+  @include except-mobile {
+    padding: 0 40rem 80rem;
+  }
 }
 
 .footer {

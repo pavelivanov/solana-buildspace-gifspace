@@ -2,6 +2,13 @@ html {
   font-size: 1px;
 }
 
+@media (max-width: 568px) {
+
+  html {
+    font-size: 0.267vw;
+  }
+}
+
 html,
 body {
   min-height: 100vh;

@@ -20,14 +20,19 @@
     "jsx": "preserve",
     "incremental": true,
     "paths": {
+      "wallet": [ "local_modules/wallet" ],
       "components": [ "components" ],
-      "hooks": [ "hooks" ]
+      "hooks": [ "hooks" ],
+      "keypair.json": [ "keypair.json" ],
+      "helpers": [ "helpers" ],
+      "helpers/*": [ "helpers/*" ]
     }
   },
   "include": [
     "next-env.d.ts",
     "**/*.ts",
-    "**/*.tsx"
+    "**/*.tsx",
+    "additional.d.ts"
   ],
   "exclude": [
     "node_modules"

@@ -1,0 +1,27 @@
+@import "styles/shared";
+
+
+.gifs {
+
+  @include except-mobile {
+    display: flex;
+    flex-wrap: wrap;
+    margin: -30rem;
+  }
+}
+
+.gif {
+
+  @include mobile {
+    margin-top: 40rem;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  @include except-mobile {
+    width: calc(100% / 3);
+    padding: 30rem;
+  }
+}

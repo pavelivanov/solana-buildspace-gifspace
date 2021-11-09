@@ -1,22 +1,78 @@
+.content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 80rem;
+}
+
+.loadingMessage {
+  color: #3a59fd;
+  font-size: 24rem;
+  line-height: 56rem;
+}
+
+.installNote {
+  color: #fff;
+  font-weight: 300;
+  font-size: 24rem;
+
+  a {
+    position: relative;
+
+    &:any-link {
+      color: #3a59fd;
+    }
+
+    &::after {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      display: block;
+      width: 100%;
+      height: 1px;
+      background-color: #3a59fd;
+      transition: all 0.13s ease;
+      content: '';
+    }
+
+    &:hover {
+
+      &::after {
+        opacity: 0;
+      }
+    }
+  }
+}
+
+.actionButton {
+  height: 56rem;
+  padding: 0 40rem;
+  border: 0;
+  color: #fff;
+  font-weight: 300;
+  font-size: 18rem;
+  line-height: 56rem;
+  text-transform: uppercase;
+  background: #000;
+  cursor: pointer;
+
+  &.loading {
+    cursor: wait;
+  }
+}
+
 .form {
   position: relative;
+  width: 100%;
   max-width: 640rem;
-  margin: 0 auto 80rem;
 }
 
-.button {
-  position: absolute;
-  top: 6rem;
-  right: 0;
-  width: 44rem;
-  height: 44rem;
-  background: none;
-  border: 0;
-  padding: 0;
-}
-
-.arrow {
-  color: #fff;
+@mixin placeholder {
+  &::placeholder { @content; }
+  &::-webkit-input-placeholder { @content; }
+  &:-moz-placeholder { @content; }
+  &::-moz-placeholder { @content; }
+  &:-ms-input-placeholder { @content; }
 }
 
 .input {
@@ -29,12 +85,20 @@
   background: none;
   border: 0;
 
+  @include placeholder {
+    color: #627e9f;
+  }
+
   &:focus {
     outline: none;
 
-    & + .line {
-      height: 2px;
+    & ~ .line {
       opacity: 1;
+      background-color: #fff;
+    }
+
+    & ~ .submitButton {
+      color: #fff;
     }
   }
 }
@@ -46,17 +110,23 @@
   width: 100%;
   height: 1px;
   opacity: 0.8;
-  background-color: #fff;
+  background-color: #627e9f;
   pointer-events: none;
 }
 
-.gifs {
-  display: flex;
-  flex-wrap: wrap;
-  margin: -30rem;
-}
+.submitButton {
+  position: absolute;
+  top: 6rem;
+  right: 0;
+  width: 44rem;
+  height: 44rem;
+  background: none;
+  border: 0;
+  padding: 0;
+  color: #627e9f;
 
-.gif {
-  width: calc(100% / 3);
-  padding: 30rem;
+  img {
+    display: block;
+    width: 24rem;
+  }
 }

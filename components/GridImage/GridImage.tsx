@@ -35,7 +35,7 @@ const GridImage: React.FC<GridImageProps> = ({ className, src: gifSrc }) => {
   }, [ gifSrc ])
 
   return (
-    <AspectContainer className={cx(s.image, className)} aspect={aspect} fit="cover">
+    <AspectContainer className={cx(s.image, className)} aspect={1} fit="contain">
       <img src={src} alt="" />
     </AspectContainer>
   )

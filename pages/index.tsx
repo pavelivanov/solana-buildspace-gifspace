@@ -1,29 +1,22 @@
 import React from 'react'
+import Link from 'next/link'
 import type { NextPage } from 'next'
+import { PREVIEW_GIFS } from 'helpers'
 
-import { GridImage } from 'components'
+import { Gallery } from 'components'
 
 import s from './index.module.scss'
 
-
-const TEST_GIFS = [
-  'https://media.giphy.com/media/l0O7NvDd6lifNaNuo/giphy.gif',
-  'https://media.giphy.com/media/J3GvwYLogUVgY/giphy.gif',
-  'https://media.giphy.com/media/PkKzNQjwPy7GvxZbfe/giphy.gif',
-]
 
 const HomePage: NextPage = () => {
 
   return (
     <>
-      <div className={s.gifs}>
-        {
-          TEST_GIFS.map((url) => (
-            <div key={url} className={s.gif}>
-              <GridImage src={url} />
-            </div>
-          ))
-        }
+      <Gallery items={PREVIEW_GIFS} />
+      <div className={s.buttonContainer}>
+        <Link href="/collection">
+          <a className={s.button}>Create my own collection</a>
+        </Link>
       </div>
     </>
   )
